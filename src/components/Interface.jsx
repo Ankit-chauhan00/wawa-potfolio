@@ -5,12 +5,11 @@ import gsap from "gsap";
 
 
 
-
 export const Section = (props)=>{
     const {children} = props;
 
     return (
-        <section className="h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center">
+        <section className="h-screen w-screen  max-w-screen-2xl mx-auto flex flex-col items-start justify-center">
             {children}
         </section>
     )
@@ -18,6 +17,8 @@ export const Section = (props)=>{
 }
 
 export const Interface = () => {
+
+  
 
     useGSAP(() => {
   gsap.from(".fade-section", {
@@ -37,7 +38,6 @@ export const Interface = () => {
   <SkillSection/>
   
   <ContactSection/>
-  
     </div>
   )
 }
@@ -47,9 +47,9 @@ const AboutSection = () => {
   return (
     <Section>
       <div  className="fade-section ">
-        <h1 className="text-6xl font-extrabold leading-snug">
+        <h1 className="text-5xl font-extrabold leading-snug">
           Hi, I'm
-          <span className="bg-white px-1 italic">Ankit Chauhan</span>
+          <span className=" px-1 italic">Ankit Chauhan</span>
         </h1>
 
         <p className="text-lg text-gray-400 mt-4">

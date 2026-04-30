@@ -3,10 +3,9 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './components/Experience'
 import { Scroll, ScrollControls } from '@react-three/drei'
 import { Interface } from './components/Interface'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ScrollManager } from './components/ScrollManager'
 import { Menu } from './components/Menu'
-
 
 
 
@@ -15,20 +14,16 @@ const App = () => {
   const [menuOpened, setMenuOpened] = useState(false);
 
 
-  useEffect(()=>{
-    setMenuOpened(false);
-  },[section])
-
   return (
     <>
-    <Canvas shadows camera={{position: [3,3,3], fov: 30}}>
+    <Canvas shadows camera={{position: [0,0,6], fov: 25}}>
 
       <color attach="background" args={["#ececec"]}/>
 
-      <ScrollControls pages={3} damping={0.2}>
+      <ScrollControls pages={3} damping={0.1}>
         <ScrollManager section={section} onSectionChange={setSection} />
 
-      <Experience/>
+      <Experience section={section} />
 
       <Scroll html>
         <Interface/>
