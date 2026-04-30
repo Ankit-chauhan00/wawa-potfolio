@@ -1,9 +1,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 
 
 
@@ -39,6 +37,7 @@ export const Interface = () => {
   <SkillSection/>
   
   <ContactSection/>
+  
     </div>
   )
 }
@@ -105,7 +104,7 @@ const languages = [
 const SkillSection = ()=>{
     return(
         <Section>
-            <div className="fade-section">
+            <div className="">
                 <h2 className="text-5xl font-bold">Skills</h2>
 
                 <div className="mt-8 space-y-4">
@@ -152,7 +151,7 @@ const SkillSection = ()=>{
 const ContactSection = () => {
   return (
     <Section>
-        <div className="fade-sectio ">
+        <div className="">
       <h2 className="text-5xl font-bold">Contact me</h2>
       <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
         <form>
