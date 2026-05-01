@@ -7,27 +7,51 @@ Source: https://sketchfab.com/3d-models/asylum-demon-dark-souls-effe21bad5bf4c37
 Title: Asylum Demon - Dark Souls
 */
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 export function Monster(props) {
+  const { section } = props;
 
   const group = React.useRef()
   const { scene, animations } = useGLTF('/models/monster.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
+  const [currentAnim, setCurrentAnim] = useState(null);
+
+  const animationMap = {
+  0: "[Action Stash]",
+  1: "[Action Stash].001",
+  2: "[Action Stash].003",
+  3: "[Action Stash].002",
+};
 
   useEffect(() => {
   if (!actions) return;
 
-  const first = Object.values(actions)[3]; // pick first animation
-  first?.reset().fadeIn(0.5).play();
+  const animName = animationMap[section] || "stand"; // fallback
+  const newAnim = actions[animName];
 
-  return () => first?.fadeOut(0.5);
-}, [actions]);
+  if (!newAnim) {
+    console.warn("Animation not found:", animName);
+    return;
+  }
+
+  if (currentAnim !== newAnim) {
+    currentAnim?.fadeOut(0.5);
+
+    newAnim
+      .reset()
+      .fadeIn(0.5)
+      .play();
+
+    setCurrentAnim(newAnim);
+  }
+}, [actions, section]);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

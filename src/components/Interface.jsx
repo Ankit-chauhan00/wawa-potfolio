@@ -1,6 +1,4 @@
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 
 
 
@@ -20,14 +18,6 @@ export const Interface = () => {
 
   
 
-    useGSAP(() => {
-  gsap.from(".fade-section", {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    stagger: 0.2,
-  });
-});
 
  
   return (
@@ -47,16 +37,16 @@ const AboutSection = () => {
   return (
     <Section>
       <div  className="fade-section ">
-        <h1 className="text-5xl font-extrabold leading-snug">
+        <h1 className="text-8xl font-myfont text-gray-50  text-shadow-2xs   leading-snug">
           Hi, I'm
           <span className=" px-1 italic">Ankit Chauhan</span>
         </h1>
 
-        <p className="text-lg text-gray-400 mt-4">
+        <p className="text-3xl font-light text-gray-400 mt-3">
           I design & implement a Idea <br /> into a Real world website
         </p>
 
-        <button className="bg-indigo-400 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16">
+        <button className="bg-indigo-400 hover:bg-indigo-700 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16">
           Contact Me
         </button>
       </div>
