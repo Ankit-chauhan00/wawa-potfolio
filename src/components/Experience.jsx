@@ -1,29 +1,43 @@
 import { ContactShadows, Environment, } from "@react-three/drei"
 import { Monster } from "./Monster"
-import { useFrame } from "@react-three/fiber";
+import {  useThree } from "@react-three/fiber";
+import { useEffect } from "react";
+import gsap from "gsap";
+
+
+const cameraPositions = [
+  { x: 0, y: 2, z: 5 },
+  { x: 1, y: 1, z: 3 },
+  { x: -2.1, y: -0.5, z: 4 },
+];
 
 
 
 const Experience = ({section}) => {
+  const { camera } = useThree();
+     useEffect(() => {
+    const pos = cameraPositions[section];
 
-  useFrame((state) => {
-  const t = state.clock.getElapsedTime();
-  const camera = state.camera;
+    gsap.to(camera.position, {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+      duration: 1.2,
+      ease: "bounce.out",
+    });
 
-  const targetX = Math.sin(t * 0.2) * 0.5;
-  const targetY = 2 + Math.sin(t * 0.3) * 0.2;
+    gsap.to(camera, {
+      onUpdate: () => camera.lookAt(0.2, 0.2, 0),
+      duration: 1.2,
+    });
 
-  camera.position.x += (targetX - camera.position.x) * 0.05;
-  camera.position.y += (targetY - camera.position.y) * 0.05;
-  
+  }, [section, camera]);
 
-  camera.lookAt(0.2, 0.2, 0);
-});
 
 
   return (
     <>
-      <Environment preset="forest"  blur={0.8} resolution={256} environmentIntensity={1} background  />
+      <Environment preset="studio"  blur={1} resolution={1024} environmentIntensity={1.2} background  />
       <directionalLight
   position={[-5, 2, -5]}
   intensity={10}

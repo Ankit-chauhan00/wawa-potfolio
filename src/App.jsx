@@ -20,7 +20,7 @@ const App = () => {
 
       <color attach="background" args={["#ececec"]}/>
 
-      <ScrollControls pages={3} damping={0.1}>
+      <ScrollControls pages={3} damping={1}>
         <ScrollManager section={section} onSectionChange={setSection} />
 
       <Experience section={section} />

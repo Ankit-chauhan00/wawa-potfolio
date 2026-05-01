@@ -23,7 +23,7 @@ export function Monster(props) {
   useEffect(() => {
   if (!actions) return;
 
-  const first = Object.values(actions)[0]; // pick first animation
+  const first = Object.values(actions)[3]; // pick first animation
   first?.reset().fadeIn(0.5).play();
 
   return () => first?.fadeOut(0.5);
