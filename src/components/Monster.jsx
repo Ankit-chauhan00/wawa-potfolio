@@ -40,6 +40,8 @@ export function Monster(props) {
     return;
   }
 
+  
+
   if (currentAnim !== newAnim) {
     currentAnim?.fadeOut(0.5);
 
@@ -51,6 +53,8 @@ export function Monster(props) {
     setCurrentAnim(newAnim);
   }
 }, [actions, section]);
+
+
 
   return (
     <group ref={group} {...props} dispose={null}>

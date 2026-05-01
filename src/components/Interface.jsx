@@ -1,4 +1,4 @@
-
+import { motion } from "framer-motion";
 
 
 
@@ -7,9 +7,13 @@ export const Section = (props)=>{
     const {children} = props;
 
     return (
-        <section className="h-screen w-screen  max-w-screen-2xl mx-auto flex flex-col items-start justify-center">
+        <motion.section className="h-screen w-screen  max-w-screen-2xl mx-auto flex flex-col items-start justify-center"
+        initial={{opacity: 0, y:50}}
+        whileInView={{opacity:1, y: 0, transition:{ duration: 1, delay: 0.5} }}
+        >
+          
             {children}
-        </section>
+        </motion.section>
     )
 
 }
@@ -42,13 +46,21 @@ const AboutSection = () => {
           <span className=" px-1 italic">Ankit Chauhan</span>
         </h1>
 
-        <p className="text-3xl font-light text-gray-400 mt-3">
+        <motion.p className="text-3xl font-light text-gray-400 mt-3"
+        initial={{opacity: 0, y: 25}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{duration: 1, delay: 1.5}}
+        >
           I design & implement a Idea <br /> into a Real world website
-        </p>
+        </motion.p>
 
-        <button className="bg-indigo-400 hover:bg-indigo-700 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16">
+        <motion.button className="bg-indigo-400 hover:bg-indigo-700 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16"
+        initial={{opacity: 0, y: 25}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{duration: 1, delay: 2}}
+        >
           Contact Me
-        </button>
+        </motion.button>
       </div>
     </Section>
   );
@@ -94,16 +106,28 @@ const languages = [
 const SkillSection = ()=>{
     return(
         <Section>
-            <div className="">
+            <motion.div whileInView={"visible"} className="">
                 <h2 className="text-5xl font-bold">Skills</h2>
 
                 <div className="mt-8 space-y-4">
                     {
                         skills.map((skills, idx)=>(
                             <div className="w-64" key={idx}>
-                                <h3 className="text-xl font-bold text-gray-800">{skills.title}</h3>
+                                <motion.h3 
+                                initial={{
+                                  opacity: 0,
+                                }}
+                                variants={{ visible:{ opacity: 1, transition:{duration: 1, delay: 1+ idx * 0.2} }}}
+                                className="text-xl font-bold text-gray-800
+                                ">{
+                                  skills.title
+                                  }
+                                  </motion.h3>
                                 <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
-                                    <div className="h-full bg-indigo-400 rounded-full"
+                                    <motion.div 
+                                    initial={{scaleX: 0, originX: 0}}
+                                    variants={{ visible: { scaleX: 1, transition:{ duration: 1, delay: 1 + idx * 0.2 } } }}
+                                    className="h-full bg-indigo-400 rounded-full"
                                     style={{width: `${skills.level}%`}}
                                     />
                                 </div>
@@ -116,23 +140,32 @@ const SkillSection = ()=>{
                     <h2 className="text-5xl font-bold mt-10">Languages</h2>
                     <div className="mt-8 space-y-4">
                         {
-                            languages.map((lan,idx)=>(
-                                <div className="w-64" key={idx}>
-                                    <h3 className="text-xl font-bold text-gray-800">{lan.title}</h3>
-                                    <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
-                                        <div 
-                                        className="h-full bg-indigo-500 rounded-full"
-                                        style={{width: `${lan.level}%`}}
-                                        >
-
-                                        </div>
-                                    </div>
+                            languages.map((lan, idx)=>(
+                            <div className="w-64" key={idx}>
+                                <motion.h3 
+                                initial={{
+                                  opacity: 0,
+                                }}
+                                variants={{ visible:{ opacity: 1, transition:{duration: 1, delay: 2+ idx * 0.2} }}}
+                                className="text-xl font-bold text-gray-800
+                                ">{
+                                  lan.title
+                                  }
+                                  </motion.h3>
+                                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+                                    <motion.div 
+                                    initial={{scaleX: 0, originX: 0}}
+                                    variants={{ visible: { scaleX: 1, transition:{ duration: 1, delay: 2 + idx * 0.2 } } }}
+                                    className="h-full bg-indigo-400 rounded-full"
+                                    style={{width: `${skills.level}%`}}
+                                    />
                                 </div>
-                            ))
+                            </div>
+                        ))
                         }
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </Section>
     )
 }
