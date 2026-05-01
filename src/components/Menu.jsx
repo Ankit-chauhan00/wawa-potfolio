@@ -6,7 +6,7 @@ export const Menu = (props)=>{
       <button
         onClick={() => setMenuOpened(!menuOpened)}
         className="z-20 fixed top-8 right-8 p-3 rounded-md 
-      bg-black/20 backdrop-blur-md border border-white/10 w-9 h-9 items-center "
+      bg-black/20 backdrop-blur-md border border-white/10 w-12 h-12 items-center "
       >
         <div
           className={`bg-white h-0.5 rounded-md w-full transition-all ${
