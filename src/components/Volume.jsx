@@ -32,7 +32,7 @@ const Volume = ({ setVolume, onStart }) => {
       className={`z-20 fixed top-12 left-12 p-3 w-12 h-12 rounded-md 
       bg-black/20 backdrop-blur-md border border-white/10 
       flex items-center justify-center transition-all duration-300 ${
-        glowing ? 'scale-110 brightness-125 animate-pulse shadow-[0_0_20px_#3b82f6,0_0_60px_#3b82f6,0_0_120px_#1d4ed8]' : ''
+        glowing ? 'scale-130 brightness-200 animate-pulse shadow-[0_0_40px_#ff0080,0_0_100px_#ff0080,0_0_200px_#be185d]' : ''
       }`}
     >
       {muted ? (

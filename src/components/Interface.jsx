@@ -18,7 +18,7 @@ export const Section = (props)=>{
 
 }
 
-export const Interface = () => {
+export const Interface = ({setSection}) => {
 
   
 
@@ -27,21 +27,23 @@ export const Interface = () => {
   return (
   <div className="flex flex-col items-center w-screen">
 
-  <AboutSection  />
+  <AboutSection setSection={setSection}  />
 
   <SkillSection/>
   
+  <ProjectSection/>
+
   <ContactSection/>
     </div>
   )
 }
 
 
-const AboutSection = () => {
+const AboutSection = ({setSection}) => {
   return (
     <Section>
-      <div  className="fade-section ">
-        <h1 className="text-8xl font-myfont text-gray-50  text-shadow-2xs   leading-snug">
+      <div  className="bg-pink-500/10 backdrop-blur-xl border border-pink-300/20 rounded-2xl p-6">
+        <h1 className="text-8xl font-myfont text-gray-50   text-shadow-2xs tracking-tighter">
           Hi, I'm
           <span className=" px-1 italic">Ankit Chauhan</span>
         </h1>
@@ -54,10 +56,11 @@ const AboutSection = () => {
           I design & implement a Idea <br /> into a Real world website
         </motion.p>
 
-        <motion.button className="bg-indigo-400 hover:bg-indigo-700 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16"
+        <motion.button className="bg-pink-300 hover:bg-pink-600 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16"
         initial={{opacity: 0, y: 25}}
         whileInView={{opacity: 1, y: 0}}
         transition={{duration: 1, delay: 2}}
+        onClick={()=>{setSection(3)}}
         >
           Contact Me
         </motion.button>
@@ -106,10 +109,10 @@ const languages = [
 const SkillSection = ()=>{
     return(
         <Section>
-            <motion.div whileInView={"visible"} className="">
-                <h2 className="text-5xl font-bold">Skills</h2>
+            <motion.div whileInView={"visible"} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
+                <h2 className="text-5xl font-extrabold font-myfont text-white tracking-wider">Skills</h2>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 ">
                     {
                         skills.map((skills, idx)=>(
                             <div className="w-64" key={idx}>
@@ -137,7 +140,7 @@ const SkillSection = ()=>{
                 </div>
 
                 <div className="">
-                    <h2 className="text-5xl font-bold mt-10">Languages</h2>
+                    <h2 className="text-5xl font-extrabold font-myfont text-white tracking-wider mt-10">Languages</h2>
                     <div className="mt-8 space-y-4">
                         {
                             languages.map((lan, idx)=>(
@@ -164,6 +167,20 @@ const SkillSection = ()=>{
                         ))
                         }
                     </div>
+                </div>
+            </motion.div>
+        </Section>
+    )
+}
+
+
+const ProjectSection = ()=>{
+    return(
+        <Section>
+            <motion.div whileInView={"visible"} className="">
+                <h2 className="text-5xl font-bold">Projects</h2>
+                <div className="mt-8 text-lg text-gray-300">
+                    <p>Coming soon...</p>
                 </div>
             </motion.div>
         </Section>
@@ -210,7 +227,7 @@ const ContactSection = () => {
             id="message"
             className="h-20 block w-full outline-0 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
           />
-          <button className="bg-indigo-400 hover:bg-indigo-600 hover:scale-85 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
+          <button className="bg-red-400 hover:bg-red-600 hover:scale-85 text-white py-2 px-4 rounded-lg font-light font-myfont text-lg mt-8 ">
             Submit
           </button>
         </form>
