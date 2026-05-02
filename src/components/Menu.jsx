@@ -1,9 +1,15 @@
+import { motion } from "framer-motion";
+
 export const Menu = (props)=>{
     const {onSectionChange, menuOpened, setMenuOpened} = props;
 
     return (
     <>
-      <button
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        whileHover={{ boxShadow: "0 0 20px rgba(99, 102, 241, 0.6)" }}
         onClick={() => setMenuOpened(!menuOpened)}
         className="z-20 fixed top-8 right-8 p-3 rounded-md 
       bg-black/20 backdrop-blur-md border border-white/10 w-12 h-12 items-center "
@@ -23,8 +29,11 @@ export const Menu = (props)=>{
             menuOpened ? "-rotate-45" : ""
           }`}
         />
-      </button>
-      <div
+      </motion.button>
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         className={`z-10 fixed top-0 right-0 bottom-0 stransition-all overflow-hidden flex flex-col bg-white/10 backdrop-blur-md border-l border-white/20 shadow-2xl
       ${menuOpened ? "w-96" : "w-0"}`}
       >
@@ -34,7 +43,7 @@ export const Menu = (props)=>{
           <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
           <MenuButton label="Contact" onClick={() => onSectionChange(3)} />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

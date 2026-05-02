@@ -8,6 +8,7 @@ import { ScrollManager } from './components/ScrollManager'
 import { Menu } from './components/Menu'
 import Volume from './components/Volume'
 import { Cursor } from './components/Cursor'
+import LoadingScreen from './components/LoadingScreen'
 
 
 
@@ -15,6 +16,7 @@ const App = () => {
   const [section, setSection] = useState(0);
   const [menuOpened, setMenuOpened] = useState(false);
   const [volume, setVolume] = useState(0);
+  const [loading, setLoading] = useState(true);
   const audioRef = useRef(null);
 
    const handleStartAudio = () => {
@@ -30,44 +32,41 @@ const App = () => {
 
   return (
     <>
-    <Canvas shadows camera={{position: [0,0,6], fov: 25}}>
-
-      <color attach="background" args={["#ececec"]}/>
-
-      <Suspense fallback={null}>
-      <ScrollControls pages={4} damping={1}>
-        <ScrollManager section={section} onSectionChange={setSection} />
-
-      <Experience section={section} />
-
-      <Scroll html>
-        <Interface setSection={setSection} />
-      </Scroll>
-
-      </ScrollControls>
-      </Suspense>
-    </Canvas>
-    <Loader/>
-
-    <Menu onSectionChange={setSection} menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
-
-    <audio ref={audioRef} src="/sounds/live_fast.mp3" loop/>
-    <Volume setVolume={(v)=>{
-      setVolume(v);
-      if(audioRef.current)
-        audioRef.current.volume = v;
-    }} 
-    onStart={handleStartAudio}
-    />
-
-    <Cursor 
-      size={60}           // Inner dot size
-      outerSize={20}     // Outer ring size
-      color="indigo-500" // Color (Tailwind class)
-      delay={0.1}        // Delay factor (0-1, lower = faster follow)
-      opacity={1}      // Opacity (0-1)
-    />
-
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      
+      {!loading && (
+        <>
+          <Canvas shadows camera={{position: [0,0,6], fov: 25}}>
+            <color attach="background" args={["#ececec"]}/>
+            <Suspense fallback={null}>
+              <ScrollControls pages={4} damping={1}>
+                <ScrollManager section={section} onSectionChange={setSection} />
+                <Experience section={section} />
+                <Scroll html>
+                  <Interface setSection={setSection} />
+                </Scroll>
+              </ScrollControls>
+            </Suspense>
+          </Canvas>
+          <Loader/>
+          <Menu onSectionChange={setSection} menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
+          <audio ref={audioRef} src="/sounds/live_fast.mp3" loop/>
+          <Volume setVolume={(v)=>{
+            setVolume(v);
+            if(audioRef.current)
+              audioRef.current.volume = v;
+          }} 
+          onStart={handleStartAudio}
+          />
+          <Cursor 
+            size={60}
+            outerSize={20}
+            color="indigo-500"
+            delay={0.1}
+            opacity={1}
+          />
+        </>
+      )}
     </>
   )
 }
