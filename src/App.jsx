@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 
 import Experience from './components/Experience'
-import { Loader, Scroll, ScrollControls } from '@react-three/drei'
+import {  Scroll, ScrollControls } from '@react-three/drei'
 import { Interface } from './components/Interface'
 import {  Suspense, useRef, useState } from 'react'
 import { ScrollManager } from './components/ScrollManager'
@@ -48,7 +48,6 @@ const App = () => {
               </ScrollControls>
             </Suspense>
           </Canvas>
-          <Loader/>
           <Menu onSectionChange={setSection} menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
           <audio ref={audioRef} src="/sounds/live_fast.mp3" loop/>
           <Volume setVolume={(v)=>{
