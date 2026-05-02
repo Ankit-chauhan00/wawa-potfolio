@@ -42,7 +42,7 @@ export const Interface = ({setSection}) => {
 const AboutSection = ({setSection}) => {
   return (
     <Section>
-      <div  className="bg-pink-500/10 backdrop-blur-xl border border-pink-300/20 rounded-2xl p-6">
+      <div  className="bg-pink-500/15 backdrop-blur-xl border border-pink-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#ff2d95,0_0_120px_#ff2d95] transition-all duration-300">
         <h1 className="text-8xl font-myfont text-gray-50   text-shadow-2xs tracking-tighter">
           Hi, I'm
           <span className=" px-1 italic">Ankit Chauhan</span>
@@ -109,7 +109,7 @@ const languages = [
 const SkillSection = ()=>{
     return(
         <Section>
-            <motion.div whileInView={"visible"} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
+            <motion.div whileInView={"visible"} className="bg-blue-500/15 backdrop-blur-xl border border-blue-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#3b82f6,0_0_120px_#3b82f6] transition-all duration-300">
                 <h2 className="text-5xl font-extrabold font-myfont text-white tracking-wider">Skills</h2>
 
                 <div className="mt-8 space-y-4 ">
@@ -191,7 +191,7 @@ const ProjectSection = ()=>{
 const ContactSection = () => {
   return (
     <Section>
-        <div className=" bg-white/10 backdrop-blur-md border-l border-white/20 shadow-2xl rounded-2xl p-4">
+        <div className="bg-red-500/15 backdrop-blur-xl border border-red-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#ff3b3b,0_0_120px_#ff3b3b] transition-all duration-300">
       <h2 className="text-4xl font-bold font-myfont text-gray-200">Contact me</h2>
       <div className=" p-8 rounded-md bg-transparent w-96 max-w-full">
         <form>

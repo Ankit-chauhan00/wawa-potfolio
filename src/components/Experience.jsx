@@ -13,10 +13,10 @@ const cameraPositions = [
 ];
 
 const lightSettings = [
-  { mainIntensity: 30, accentColor: "#ff00ff", accentIntensity: 30, envIntensity: 5 }, // neon magenta
-  { mainIntensity: 55, accentColor: "#60a5fa", accentIntensity: 50, envIntensity: 10 }, // neon cyan
-  { mainIntensity: 10, accentColor: "#fb923c", accentIntensity: 10, envIntensity: 1 }, // neon green
-  { mainIntensity: 80, accentColor: "#ff3131", accentIntensity: 55, envIntensity: 16 }, // neon red
+  { mainIntensity: 30, accentColor: "#ff00ff", accentIntensity: 30, envIntensity: 5 }, 
+  { mainIntensity: 55, accentColor: "#60a5fa", accentIntensity: 50, envIntensity: 10 }, 
+  { mainIntensity: 10, accentColor: "#fb923c", accentIntensity: 10, envIntensity: 1 }, 
+  { mainIntensity: 80, accentColor: "#ff3131", accentIntensity: 55, envIntensity: 16 }, 
 ];
 
 const Experience = ({section}) => {

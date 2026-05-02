@@ -58,11 +58,11 @@ const App = () => {
     />
 
     <Cursor 
-      size={10}           // Inner dot size
-      outerSize={30}     // Outer ring size
+      size={60}           // Inner dot size
+      outerSize={20}     // Outer ring size
       color="indigo-500" // Color (Tailwind class)
       delay={0.1}        // Delay factor (0-1, lower = faster follow)
-      opacity={0.6}      // Opacity (0-1)
+      opacity={1}      // Opacity (0-1)
     />
 
     </>
