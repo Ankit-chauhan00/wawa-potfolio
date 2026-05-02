@@ -1,9 +1,9 @@
 import { Canvas } from '@react-three/fiber'
 
 import Experience from './components/Experience'
-import { Scroll, ScrollControls } from '@react-three/drei'
+import { Loader, Scroll, ScrollControls } from '@react-three/drei'
 import { Interface } from './components/Interface'
-import {  useRef, useState } from 'react'
+import {  Suspense, useRef, useState } from 'react'
 import { ScrollManager } from './components/ScrollManager'
 import { Menu } from './components/Menu'
 import Volume from './components/Volume'
@@ -34,6 +34,7 @@ const App = () => {
 
       <color attach="background" args={["#ececec"]}/>
 
+      <Suspense fallback={null}>
       <ScrollControls pages={4} damping={1}>
         <ScrollManager section={section} onSectionChange={setSection} />
 
@@ -44,7 +45,9 @@ const App = () => {
       </Scroll>
 
       </ScrollControls>
+      </Suspense>
     </Canvas>
+    <Loader/>
 
     <Menu onSectionChange={setSection} menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
 
