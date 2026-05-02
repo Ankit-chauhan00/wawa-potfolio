@@ -25,10 +25,10 @@ export const Menu = (props)=>{
         />
       </button>
       <div
-        className={`z-10 fixed top-0 right-0 bottom-0 stransition-all overflow-hidden flex flex-col bg-white/10 backdrop-blur-md border-l border-white/20 shadow-2xl
+        className={`z-10 fixed top-0 right-0 bottom-0 hover:scale-90 stransition-all overflow-hidden flex flex-col bg-white/10 backdrop-blur-md border-l border-white/20 shadow-2xl
       ${menuOpened ? "w-96" : "w-0"}`}
       >
-        <div className="flex-1 flex items-start justify-center flex-col gap-10  p-8">
+        <div className="flex-1 flex items-start  justify-center flex-col gap-10  p-8">
           <MenuButton label="About" onClick={() => onSectionChange(0)} />
           <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
           <MenuButton label="Projects" onClick={() => onSectionChange(2)} />

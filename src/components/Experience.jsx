@@ -14,6 +14,8 @@ const cameraPositions = [
 
 
 const Experience = ({section}) => {
+
+  
   const { camera } = useThree();
      useEffect(() => {
     const pos = cameraPositions[section];

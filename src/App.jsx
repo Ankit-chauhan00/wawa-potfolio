@@ -7,6 +7,7 @@ import {  useRef, useState } from 'react'
 import { ScrollManager } from './components/ScrollManager'
 import { Menu } from './components/Menu'
 import Volume from './components/Volume'
+import { Cursor } from './components/Cursor'
 
 
 
@@ -47,13 +48,21 @@ const App = () => {
 
     <Menu onSectionChange={setSection} menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
 
-    <audio ref={audioRef} src="/sounds/live_fast.mp3" loop  l />
+    <audio ref={audioRef} src="/sounds/live_fast.mp3" loop/>
     <Volume setVolume={(v)=>{
       setVolume(v);
       if(audioRef.current)
         audioRef.current.volume = v;
     }} 
     onStart={handleStartAudio}
+    />
+
+    <Cursor 
+      size={10}           // Inner dot size
+      outerSize={30}     // Outer ring size
+      color="indigo-500" // Color (Tailwind class)
+      delay={0.1}        // Delay factor (0-1, lower = faster follow)
+      opacity={0.6}      // Opacity (0-1)
     />
 
     </>
