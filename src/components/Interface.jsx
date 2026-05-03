@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 
 
-
-
 export const Section = (props)=>{
     const {children} = props;
 
@@ -18,11 +16,7 @@ export const Section = (props)=>{
 
 }
 
-export const Interface = ({setSection}) => {
-
-  
-
-
+export const Interface = ({ setSection, setFocusMode, focusMode }) => {
  
   return (
   <div className="flex flex-col items-center w-screen">
@@ -31,18 +25,17 @@ export const Interface = ({setSection}) => {
 
   <SkillSection/>
   
-  <ProjectSection/>
+  <ProjectSection setFocusMode={setFocusMode} focusMode={focusMode} />
 
   <ContactSection/>
     </div>
   )
 }
 
-
 const AboutSection = ({setSection}) => {
   return (
     <Section>
-      <div  className="bg-pink-500/15 backdrop-blur-xl border border-pink-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#ff2d95,0_0_120px_#ff2d95] transition-all duration-300">
+      <div  className="">
         <h1 className="text-8xl font-myfont text-gray-50   text-shadow-2xs tracking-tighter">
           Hi, I'm
           <span className=" px-1 italic">Ankit Chauhan</span>
@@ -56,7 +49,7 @@ const AboutSection = ({setSection}) => {
           I design & implement a Idea <br /> into a Real world website
         </motion.p>
 
-        <motion.button className="bg-pink-300 hover:bg-pink-600 font-myfont hover:scale-120 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16"
+        <motion.button className="bg-pink-300 hover:bg-pink-600 font-myfont hover:scale-120 text-gray-800 py-4 px-8 rounded-lg font-bold text-lg mt-16"
         initial={{opacity: 0, y: 25}}
         whileInView={{opacity: 1, y: 0}}
         transition={{duration: 1, delay: 2}}
@@ -103,13 +96,10 @@ const languages = [
     }
 ]
 
-
-
-
 const SkillSection = ()=>{
     return(
         <Section>
-            <motion.div whileInView={"visible"} className="bg-blue-500/15 backdrop-blur-xl border border-blue-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#3b82f6,0_0_120px_#3b82f6] transition-all duration-300">
+            <motion.div whileInView={"visible"} className="">
                 <h2 className="text-5xl font-extrabold font-myfont text-white tracking-wider">Skills</h2>
 
                 <div className="mt-8 space-y-4 ">
@@ -173,25 +163,41 @@ const SkillSection = ()=>{
     )
 }
 
+const ProjectSection = ({ setFocusMode, focusMode }) => {
+  return (
+    <Section>
+      <motion.div whileInView={"visible"}>
+        <h2 className="text-8xl font-bold font-myfont text-white">
+          Projects
+        </h2>
 
-const ProjectSection = ()=>{
-    return(
-        <Section>
-            <motion.div whileInView={"visible"} className="">
-                <h2 className="text-5xl font-bold">Projects</h2>
-                <div className="mt-8 text-lg text-gray-300">
-                    <p>Coming soon...</p>
-                </div>
-            </motion.div>
-        </Section>
-    )
-}
+        <div className="mt-8 text-lg text-gray-300">
+          {!focusMode ? (
+            <button
+              onClick={() => setFocusMode(true)}
+              className="bg-orange-400 px-3 py-1 rounded-lg font-bold text-gray-800 hover:bg-orange-500 hover:scale-110"
+            >
+              Open Projects 
+            </button>
+          ) : (
+            <button
+              onClick={() => setFocusMode(false)}
+              className="bg-white px-3 py-1 rounded-lg text-black hover:scale-110"
+            >
+              ✕ Close
+            </button>
+          )}
+        </div>
+      </motion.div>
+    </Section>
+  );
+};
 
 
 const ContactSection = () => {
   return (
     <Section>
-        <div className="bg-red-500/15 backdrop-blur-xl border border-red-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#ff3b3b,0_0_120px_#ff3b3b] transition-all duration-300">
+        <div className="bg-red-500/15 backdrop-blur-xl border border-red-400/30 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_60px_#ff3b3b,0_0_120px_#ff3b3b] transition-all duration-150">
       <h2 className="text-4xl font-bold font-myfont text-gray-200">Contact me</h2>
       <div className=" p-8 rounded-md bg-transparent w-96 max-w-full">
         <form>

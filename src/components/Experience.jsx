@@ -1,14 +1,16 @@
-import { ContactShadows, Environment, } from "@react-three/drei"
+import { ContactShadows, Environment, OrbitControls,  } from "@react-three/drei"
 import { Monster } from "./Monster"
 import {  useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import * as THREE from "three";
+import { Projects } from "./Projects";
+
 
 const cameraPositions = [
   { x: 0, y: 4, z: 6 },
   { x: 2, y: 2, z: 4 },
-  { x: -2.1, y: -0.5, z: 4 },
+  { x: -1, y: -0.5, z: 4},
   { x: 2, y: 0, z: 5 },
 ];
 
@@ -19,16 +21,36 @@ const lightSettings = [
   { mainIntensity: 80, accentColor: "#ff3131", accentIntensity: 55, envIntensity: 16 }, 
 ];
 
-const Experience = ({section}) => {
+const Experience = ({section, focusMode, setFocusMode}) => {
 
   
-  const { camera } = useThree();
-  const target = new THREE.Vector3(0.2, 0.2, 0)
+  const { camera, viewport } = useThree();
   const mainLightRef = useRef();
   const accentLightRef = useRef();
   const environmentRef = useRef();
 
-     useEffect(() => {
+  useEffect(() => {
+     if (focusMode) {
+       const centerX = 35;
+  const centerY = -viewport.height * 2 + 1.5;
+
+  gsap.to(camera.position, {
+    x: centerX,          // ✅ SAME as target
+    y: centerY + 6.5,    // slight top offset
+    z: 8,                // move back
+    duration: 1.2,
+    ease: "expo.inOut",
+  });
+
+  gsap.to({}, {
+    duration: 1.2,
+    onUpdate: () => {
+      camera.lookAt(centerX + 20, centerY+ 20, 30); // ✅ straight front
+    },
+  });
+  }
+  else {
+    // 🎬 section camera
     const pos = cameraPositions[section];
 
     gsap.to(camera.position, {
@@ -39,12 +61,14 @@ const Experience = ({section}) => {
       ease: "power3.inOut",
     });
 
-    gsap.to(camera, {
-      onUpdate: () => camera.lookAt(target),
+    gsap.to({}, {
       duration: 1.2,
+      onUpdate: () => {
+        camera.lookAt(0.2, 0.2, 0);
+      },
     });
-
-  }, [section, camera]);
+  }
+}, [section, focusMode]);
 
   useEffect(() => {
     const currentLightSettings = lightSettings[section] || lightSettings[0];
@@ -87,6 +111,11 @@ const Experience = ({section}) => {
 
   return (
     <>
+    {focusMode && (
+  <OrbitControls
+  target={[30, -viewport.height * 2 + 2.5, 0]}
+  />
+)}
       <Environment ref={environmentRef} preset="night"  blur={1} resolution={2048} environmentIntensity={7} background  />
       <directionalLight
         ref={mainLightRef}
@@ -102,6 +131,8 @@ const Experience = ({section}) => {
   scale={10}
   blur={1}
 />
+
+<Projects/>
 
     
     </>

@@ -17,6 +17,7 @@ const App = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const [volume, setVolume] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [focusMode, setFocusMode] = useState(false);
   const audioRef = useRef(null);
 
    const handleStartAudio = () => {
@@ -26,8 +27,7 @@ const App = () => {
     }
   };
 
-
-
+  
 
 
   return (
@@ -41,9 +41,9 @@ const App = () => {
             <Suspense fallback={null}>
               <ScrollControls pages={4} damping={1}>
                 <ScrollManager section={section} onSectionChange={setSection} />
-                <Experience section={section} />
+                <Experience section={section} focusMode={focusMode} />
                 <Scroll html>
-                  <Interface setSection={setSection} />
+                  <Interface setSection={setSection} setFocusMode={setFocusMode} focusMode={focusMode} />
                 </Scroll>
               </ScrollControls>
             </Suspense>
