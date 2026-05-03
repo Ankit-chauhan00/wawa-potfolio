@@ -36,8 +36,8 @@ const Experience = ({section, focusMode, setFocusMode}) => {
 
   gsap.to(camera.position, {
     x: centerX,          // ✅ SAME as target
-    y: centerY + 6.5,    // slight top offset
-    z: 8,                // move back
+    y: centerY ,    // slight top offset
+    z: 20,                // move back
     duration: 1.2,
     ease: "expo.inOut",
   });
@@ -45,7 +45,7 @@ const Experience = ({section, focusMode, setFocusMode}) => {
   gsap.to({}, {
     duration: 1.2,
     onUpdate: () => {
-      camera.lookAt(centerX + 20, centerY+ 20, 30); // ✅ straight front
+      camera.lookAt(centerX + 20, centerY+ 30, 30); 
     },
   });
   }
@@ -113,6 +113,9 @@ const Experience = ({section, focusMode, setFocusMode}) => {
     <>
     {focusMode && (
   <OrbitControls
+  enablePan={true}
+enableDamping={false}
+enableZoom={false}
   target={[30, -viewport.height * 2 + 2.5, 0]}
   />
 )}

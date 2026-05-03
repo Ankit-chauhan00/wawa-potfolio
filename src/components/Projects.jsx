@@ -34,13 +34,13 @@ const {project} = props;
 return (
     <group {...props}>
         <mesh position-z={-0.001}>
-            <planeGeometry  args={[0.2,0.2]}/>
+            <planeGeometry  args={[0.2,1]}/>
             <meshBasicMaterial color="black"  opacity={0.4}/>
         </mesh>
-
-        <Image scale={[2,1.2,1]} url={project.image}  toneMapped={false} position-y={0.3} />
-        <Text maxWidth={2} anchorX={"left"} anchorY={"top"} fontSize={0.2} position={[-1, -0.4,0]}>{project.title}</Text>
-        <Text maxWidth={2} anchorX={"left"} anchorY={"top"} fontSize={0.1} position={[-1, -0.67,0]}>{project.description}</Text>
+        <Image scale={[2.2,2.5,1]} url={project.image}  toneMapped={false} position-y={0.3} />
+        
+        <Text font="/fonts/font1.ttf" maxWidth={2} anchorX={"left"} anchorY={"top"} fontSize={0.2} position={[-1, -1,0]}>{project.title}</Text>
+        <Text font="/fonts/font1.ttf" maxWidth={2} anchorX={"left"} anchorY={"top"} fontSize={0.1} position={[-1, -1.3,0]}>{project.description}</Text>
     </group>
 )
 }
@@ -50,7 +50,7 @@ export const Projects = ()=>{
     const {viewport} = useThree()
     return (
         
-        <group position={[30, -viewport.height * 2 + 4.5, 0]}  rotation={[0,0.35,0]}>
+        <group position={[29, -viewport.height * 2 + 2, 10]}  rotation={[0,0.35,0]}>
             {
                 project.map((project, idx)=>(
                     <motion.group key={"project_" + idx}

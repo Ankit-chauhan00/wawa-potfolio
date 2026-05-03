@@ -39,7 +39,7 @@ const App = () => {
           <Canvas shadows camera={{position: [0,0,6], fov: 25}}>
             <color attach="background" args={["#ececec"]}/>
             <Suspense fallback={null}>
-              <ScrollControls pages={4} damping={1}>
+              <ScrollControls pages={4} damping={1} enabled={!focusMode} >
                 <ScrollManager section={section} onSectionChange={setSection} />
                 <Experience section={section} focusMode={focusMode} />
                 <Scroll html>

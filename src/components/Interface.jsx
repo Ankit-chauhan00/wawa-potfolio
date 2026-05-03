@@ -167,9 +167,12 @@ const ProjectSection = ({ setFocusMode, focusMode }) => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className="text-8xl font-bold font-myfont text-white">
-          Projects
-        </h2>
+
+        {!focusMode && (
+          <h2 className="text-8xl font-bold font-myfont text-white">
+            Projects
+          </h2>
+        )}
 
         <div className="mt-8 text-lg text-gray-300">
           {!focusMode ? (
@@ -177,7 +180,7 @@ const ProjectSection = ({ setFocusMode, focusMode }) => {
               onClick={() => setFocusMode(true)}
               className="bg-orange-400 px-3 py-1 rounded-lg font-bold text-gray-800 hover:bg-orange-500 hover:scale-110"
             >
-              Open Projects 
+              Open Projects
             </button>
           ) : (
             <button
@@ -188,6 +191,7 @@ const ProjectSection = ({ setFocusMode, focusMode }) => {
             </button>
           )}
         </div>
+
       </motion.div>
     </Section>
   );
